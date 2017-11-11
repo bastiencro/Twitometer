@@ -1,4 +1,4 @@
-var Twit = require('twit')
+/*var Twit = require('twit')
 var fs = require('fs')
 
 var T = new Twit({
@@ -12,3 +12,18 @@ var T = new Twit({
 T.post('statuses/update', { status: 'ananas' }, function(err, data, response) {
   console.log(data)
 })
+*/
+var five = require("johnny-five");
+var board = new five.Board();
+
+board.on("ready", function() {
+
+  var led = new five.Led(11);
+
+  led.fadeIn();
+
+  // Toggle the led after 5 seconds (shown in ms)
+  this.wait(500, function() {
+    led.fadeOut();
+  });
+});
