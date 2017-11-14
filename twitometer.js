@@ -1,5 +1,7 @@
 var Twit = require('twit')
 var fs = require('fs')
+var five = require("johnny-five");
+var board = new five.Board();
 
 var T = new Twit({
   consumer_key:         '65Mqgi4IcZATwIytk1uvtIUPW',
@@ -17,19 +19,21 @@ var teamscoreboard = { //lancer team, declarer structure donnees
   4 : 0, //lap
 };
 var team1 = true;
-RHONE = 1; //var globale
-SAONE = 2;
+var RHONE = 1; //var globale
+var SAONE = 2;
 
 var stream = T.stream('statuses/filter', { track: '#test_ixda18_1' })
 
 stream.on('tweet', function (tweet) {
-  //console.log(tweet)
+    //console.log(tweet)
     process_tweet(tweet)
 })
 
 
   function process_tweet( tweet ) {
     console.log(tweet.user.name)
+    //console.log(tweet.id_str)
+    var id = tweet.id_str
 
     if (!(tweet.user.name in scoreboard)) {
       scoreboard[tweet.user.name] = {}
@@ -42,17 +46,29 @@ stream.on('tweet', function (tweet) {
     var team  = scoreboard[tweet.user.name].team;
     teamscoreboard[team]+=1;
 
+    if (team === 1) {
+      var led = new five.Led(13);
+      led.on();
+      setTimeout(function() {
+        led.off();
+      }, (1000));}
+    else {
+      var led = new five.Led(12);
+      led.on();
+      setTimeout(function() {
+        led.off();
+      }, (1000));}
+
 
     scoreboard[tweet.user.name].score+=1;
     console.log(scoreboard);
+  }
 
-    if (scoreboard[tweet.user.name].score == 2) {
+    /*if (scoreboard[tweet.user.name].score = 2) {
       T.post('statuses/update', {
         status: 'merci',
-        in_reply_to_status_id :tweet.status.id_str
+        in_reply_to_status_id : id
       }, function(err, data, response) {
-        console.log(data)
+        //console.log(data)
       })
-    }
-
-  }
+    }*/
