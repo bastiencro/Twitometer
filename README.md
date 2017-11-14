@@ -16,6 +16,8 @@
 •wires
 
 ## Changelog
+#### •V1.5.1 :
+-Added score dependent replies : when reaching %5 == 0 the player will receive a tweet
 #### •V 1.4.2 : 
 -Changed files names
 #### •V 1.4.1 :
