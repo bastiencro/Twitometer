@@ -3,6 +3,12 @@
 ## Libraries requirements
 
 ## Hardware required
+•miniature electric cars
+•arduino uno
+•2 servo motors
+•L.E.Ds
+•electric resistances
+•wires
 
 ## Changelog
 #### •V 1.4.2 : 
