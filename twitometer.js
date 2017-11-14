@@ -31,9 +31,9 @@ stream.on('tweet', function (tweet) {
 
 
   function process_tweet( tweet ) {
-    console.log(tweet.user.name)
+    console.log(tweet)
     //console.log(tweet.id_str)
-    var id = tweet.id_str
+    var id = tweet.id;
 
     if (!(tweet.user.name in scoreboard)) {
       scoreboard[tweet.user.name] = {}
@@ -45,6 +45,22 @@ stream.on('tweet', function (tweet) {
 
     var team  = scoreboard[tweet.user.name].team;
     teamscoreboard[team]+=1;
+    scoreboard[tweet.user.name].score+=1;
+
+    if (scoreboard[tweet.user.name].score % 5 == 0) {
+    console.log("score 1");
+      T.post('statuses/update', {
+        status: '@'+tweet.user.screen_name+' Merci !',
+        in_reply_to_status_id : tweet.id,
+        in_reply_to_user_id : tweet.user.id,
+      }, function(err, data, response) {
+
+                //console.log(data)
+                        //console.log(err)
+                                //console.log(response)
+      })
+    }
+
 
     if (team === 1) {
       var led = new five.Led(13);
@@ -59,16 +75,5 @@ stream.on('tweet', function (tweet) {
         led.off();
       }, (1000));}
 
-
-    scoreboard[tweet.user.name].score+=1;
     console.log(scoreboard);
   }
-
-    /*if (scoreboard[tweet.user.name].score = 2) {
-      T.post('statuses/update', {
-        status: 'merci',
-        in_reply_to_status_id : id
-      }, function(err, data, response) {
-        //console.log(data)
-      })
-    }*/
