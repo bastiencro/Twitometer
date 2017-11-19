@@ -24,7 +24,7 @@ https://nodejs.org/api/fs.html
 
 And this one is used to send media trough twitter (by getting them on a directory)
 ## Hardware required
-•miniature electric cars
+•miniature electric cars (i used this one, and it worked just fine : https://www.amazon.fr/deAO-Top-Turbo-Piste-Course/dp/B072XT75MM/ref=sr_1_1?ie=UTF8&qid=1511114405&sr=8-1&keywords=deao+top+turbo)
 
 •arduino uno
 
@@ -37,13 +37,22 @@ And this one is used to send media trough twitter (by getting them on a director
 • jumper cables
 
 ## How to connect node to arduino ?
-It's easy.
+![](https://github.com/bastiencro/Twitometer/blob/master/assets/IMG_8912.JPG)
 
-![](https://github.com/bastiencro/twitometer/raw/master/assets/....png)
+Onto the tricky part ! If you want to connect your program to, let's say a miniature racing circuit, you will have to 'hack' your way into the electronic components. 
 
+![](https://github.com/bastiencro/Twitometer/blob/master/assets/IMG_8896.JPG)
+
+But don't worry ! It's easier than it look. Obviously it will depend on the racing circuit, but if you use the same as me (not sponsored) it shall be fine.
+
+First off, you will have to dismantle the remotes and extract the resistances. Then you'll have to weld them together.
+
+Time to get your NPN transistor ! As a general rule of thumbs, always check the documentation online for your electronics. Here's the one for the transistor I used : https://www.onsemi.com/pub/Collateral/PN2222-D.PDF. Next up, you will have to identify (using the doc) the leads number (1,2,3).
+
+Weld the resistances to the collector (3), the input from the arduino to the base (2) and the grounded socket to the emitter (1). When in doubt check the picture below.
 
 ## How to set up a twitter bot ?
-It's easy. (yeah again)
+It's easy.
 
 First off, you'll need to create a new twitter account for your app. (NB : don't use your's because you could get it blocked, which would be a bummer).
 
