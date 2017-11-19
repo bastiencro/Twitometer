@@ -1,4 +1,9 @@
 # Twitometer
+![](https://github.com/bastiencro/Twitometer/blob/master/assets/IMG_8911.JPG)
+
+The twitometer is a race based on twitter and a specific hashtag. As they tweet for the first time with an hashtag, the players will join a team and compete for both a team victory and a personnal one. Indeed, when a player reach a certain amount of individual tweets he will receive a notification with a gif telling him that he completed a lap. But at the same time, a tweet from a team member will move a car on a miniature racing circuit. At the end of the race, the person and the team with the most points (tweets) will win !
+
+#### The race is on !
 
 ## Node libraries requirements (software requirements in a nutshell)
 ### twit
@@ -50,6 +55,12 @@ First off, you will have to dismantle the remotes and extract the resistances. T
 Time to get your NPN transistor ! As a general rule of thumbs, always check the documentation online for your electronics. Here's the one for the transistor I used : https://www.onsemi.com/pub/Collateral/PN2222-D.PDF. Next up, you will have to identify (using the doc) the leads number (1,2,3).
 
 Weld the resistances to the collector (3), the input from the arduino to the base (2) and the grounded socket to the emitter (1). When in doubt check the picture below.
+
+![](https://github.com/bastiencro/Twitometer/blob/master/assets/IMG_8915.JPG)
+
+Now all you have to do, is connect for the first one the arduino input to the pin 13 and to the ground. Redo all those steps for the second remote and connect to the pin 12 and the ground.
+
+![](https://github.com/bastiencro/Twitometer/blob/master/assets/IMG_8897.JPG)
 
 ## How to set up a twitter bot ?
 It's easy.
@@ -151,3 +162,5 @@ stream.on('tweet', function (tweet) {
 -Added teams : when using a specific hashtag for the first time, make the person join a team
 
 -Added team scoreboard : store number of tweets w/ a specific hashtag from all the players in a team
+
+![](https://github.com/bastiencro/Twitometer/blob/master/gif/fin.gif)
