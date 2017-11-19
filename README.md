@@ -22,15 +22,17 @@ https://nodejs.org/api/fs.html
 
 •arduino uno
 
-•2 servo motors
+•2 NPN Transistors 2222A
 
-•L.E.Ds
+•L.E.Ds (for testing purposes)
 
-•electric resistances
+•electric resistances (I used those that were in the remotes)
 
-•wires
+• jumper cables
 
 ## Changelog
+### •V1.6.1 :
+-Connected the code to a miniature circuit : it went well
 #### •V1.5.1 :
 -Added score dependent replies : when reaching %5 == 0 the player will receive a tweet
 #### •V 1.4.2 : 
