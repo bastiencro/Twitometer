@@ -1,7 +1,22 @@
 # Twitometer
 
 ## Libraries requirements
+### twit
+https://github.com/ttezel/twit
 
+install with :
+
+    npm install twit
+    
+ ### jonhy-five
+ https://github.com/rwaldron/johnny-five
+ 
+ install with :
+
+    npm install johnny-five
+
+### fs
+https://nodejs.org/api/fs.html
 ## Hardware required
 •miniature electric cars
 
