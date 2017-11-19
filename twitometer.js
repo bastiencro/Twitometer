@@ -34,24 +34,24 @@ stream.on('tweet', function (tweet) {
     //console.log(tweet.id_str)
     var id = tweet.id;
 
-    if (!(tweet.user.name in scoreboard)) {
-      scoreboard[tweet.user.name] = {}
-      scoreboard[tweet.user.name].score = 0;
-      if (team1) scoreboard[tweet.user.name].team = RHONE; //car bouléen
-      else scoreboard[tweet.user.name].team = SAONE; //replace by team name a l'affichage
+    if (!(tweet.user.screen_name in scoreboard)) {
+      scoreboard[tweet.user.screen_name] = {}
+      scoreboard[tweet.user.screen_name].score = 0;
+      if (team1) scoreboard[tweet.user.screen_name].team = RHONE; //car bouléen
+      else scoreboard[tweet.user.screen_name].team = SAONE; //replace by team name a l'affichage
       team1 = !team1;
     }
 
-    var team  = scoreboard[tweet.user.name].team;
+    var team  = scoreboard[tweet.user.screen_name].team;
     teamscoreboard[team]+=1;
-    scoreboard[tweet.user.name].score+=1;
+    scoreboard[tweet.user.screen_name].score+=1;
 
-    if (scoreboard[tweet.user.name].score % 5 == 0) {
+    if (scoreboard[tweet.user.screen_name].score % 3 == 0) {
     console.log("score 1");
-    var b64content = fs.readFileSync('D:\\Documents\\GitHub\\Twitometer\\gif\\lap_red.gif', { encoding: 'base64' })
+    var b64contentred = fs.readFile('D:\\Documents\\GitHub\\Twitometer\\gif\\lap_red.gif', { encoding: 'base64' })
 
     // first we must post the media to Twitter
-    T.post('media/upload', { media_data: b64content }, function (err, data, response) {
+    T.post('media/upload', { media_data: b64contentred }, function (err, data, response) {
       // now we can assign alt text to the media, for use by screen readers and
       // other text-based presentations and interpreters
       var mediaIdStr = data.media_id_string
@@ -71,30 +71,74 @@ stream.on('tweet', function (tweet) {
     })
   }
 
-        //status: '@'+tweet.user.screen_name+' Merci !',
-        //in_reply_to_status_id : tweet.id,
-        //in_reply_to_user_id : tweet.user.id,
-      //}, function(err, data, response) {
 
-                //console.log(data)
-                        //console.log(err)
-                                //console.log(response)
-      //})
-    //}
-
-
-    if (team === 1) {
+    if (team === 1) { //put the post media here (red) /!\ modulo put this in an other if
       var led = new five.Led(13);
       led.on();
       setTimeout(function() {
         led.off();
-      }, (1000));}
-    else {
+      }, (300));}
+    else { //blue here
       var led = new five.Led(12);
       led.on();
       setTimeout(function() {
         led.off();
-      }, (1000));}
+      }, (300));}
 
     console.log(scoreboard);
   }
+
+/*setInterval(function(){check_time();},30000); //check every 10min
+function check_time() {
+  if (Date.now() > 151067340000) {
+    //console.log('oui')
+    var result = [];
+    for(var username in scoreboard){
+      var user = {};
+      //scoreboard[username]
+      user.name = username;
+      user.team = scoreboard[username].team;
+      user.score = scoreboard[username].score;
+      result.push(user);
+    }
+    //console.log(result)
+    result.sort(
+      function(a,b) {
+        return a.score - b.score;
+      }
+    );
+    result.reverse();
+
+    //for (var i = 0; i < 3; i++) {
+    //result[i]
+
+    var b64contentend = fs.readFile('./gif/fin.gif', { encoding: 'base64' }, function(err,data){
+      // console.log(data);
+
+          // first we must post the media to Twitter
+          T.post('media/upload', { media_data: b64contentend }, function (err, data, response) {
+            // now we can assign alt text to the media, for use by screen readers and
+            // other text-based presentations and interpreters
+            var mediaIdStr = data.media_id_string
+            var altText = "You completed an entire lap, congrats !"
+            var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+
+            T.post('media/metadata/create', meta_params, function (err, data, response) {
+              if (!err) {
+                // now we can reference the media and post a tweet (media will attach to the tweet)
+                var params = { status: '@'+result[0].name+'@'+result[1].name+'@'+result[2].name, media_ids: [mediaIdStr] }
+
+                T.post('statuses/update', params, function (err, data, response) {
+                  console.log(data)
+                })
+              }
+            })
+          })
+
+    })
+
+
+
+      //console.log(result)
+  }
+}*/
