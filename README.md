@@ -36,8 +36,14 @@ And this one is used to send media trough twitter (by getting them on a director
 
 • jumper cables
 
-## How to set up a twitter bot ?
+## How to connect node to arduino ?
 It's easy.
+
+![](https://github.com/bastiencro/twitometer/raw/master/assets/....png)
+
+
+## How to set up a twitter bot ?
+It's easy. (yeah again)
 
 First off, you'll need to create a new twitter account for your app. (NB : don't use your's because you could get it blocked, which would be a bummer).
 
